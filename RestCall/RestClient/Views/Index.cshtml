@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RestClient.Models.userData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.totalCount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalCount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
+
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <table class="table table-responsive" style="width:400px">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.totalCount)
+                    
+                </th>
+                <th>
+                    @Html.DisplayNameFor(item => item.ownedNfts[0].rawMetadata.name)
+                </th>
+            </tr>
+
+            @foreach (var item in Model) 
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.totalCount)
+                    </td>
+                    <td>
+                    @foreach(var loop in item.ownedNfts) 
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => loop.rawMetadata.image)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => loop.rawMetadata.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => loop.rawMetadata.name)
+                        </td>
+                    }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
