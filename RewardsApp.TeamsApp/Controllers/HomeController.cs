@@ -12,6 +12,8 @@ namespace RewardsApp.TeamsApp.Controllers
         public ActionResult Index()
         {
             ViewBag.AboutApp = "Reward your Teammated with NFTs.";
+            ViewBag.WalletId = "";
+
             return View();
         }
 

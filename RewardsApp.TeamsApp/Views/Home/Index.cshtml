@@ -1,185 +1,151 @@
-﻿<!-- START preloader-wrapper -->
-<div class="preloader-wrapper">
-    <div class="preloader-inner">
-        <div class="spinner-border text-red"></div>
-    </div>
-</div>
-<!-- END preloader-wrapper -->
-<!-- START main-wrapper -->
-<section class="d-flex">
+﻿<head>
+    <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"
+            integrity="sha384-QtTBFeFlfRDZBfwHJHYQp7MdLJ2C3sfAEB1Qpy+YblvjavBye+q87TELpTnvlXw4"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#defaultSelected").hide();
+            $("#allMemberOfOrganisationSelected").hide();
+            $("#singleSelected").hide();
+        });
 
-    <!-- start of sidenav -->
-    <aside>
-        <div class="sidenav position-sticky d-flex flex-column justify-content-between">
-            <a class="navbar-brand" href="index.html" class="logo">
-                <img src="images/logo.png" alt="" style="width: 14em;max-width: 500px;">
-            </a>
-            <!-- end of navbar-brand -->
+        let aadId;
+        microsoftTeams.app.initialize();
+        microsoftTeams.app.getContext().then(function (context) {
+            var userId = context.user.userPrincipalName
+            document.getElementById("userId").innerHTML = JSON.stringify(userId);
+            aadId = context.user.id
+        })
 
-            <div class="navbar navbar-dark my-4 p-0 font-primary">
-                <ul class="navbar-nav w-100">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white px-0 pt-0" href="">Home</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link text-white px-0" href="">About</a>
-                    </li>
-                    
-                </ul>
-            </div>
-            <!-- end of navbar -->
+        // People picker api call.
+        function selectPeople(e, setSelected, openOrgWideSearchInChatOrChannel, singleSelect) {
+            var id = $(e.currentTarget).attr('data-id');
 
-            <ul class="list-inline nml-2">
-                <li class="list-inline-item">
-                    <a href="#!" class="text-white text-red-onHover pr-2">
-                        <span class="fab fa-twitter"></span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="#!" class="text-white text-red-onHover p-2">
-                        <span class="fab fa-facebook-f"></span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="#!" class="text-white text-red-onHover p-2">
-                        <span class="fab fa-instagram"></span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="#!" class="text-white text-red-onHover p-2">
-                        <span class="fab fa-linkedin-in"></span>
-                    </a>
-                </li>
-            </ul>
-            <!-- end of social-links -->
-        </div>
-    </aside>
-    <!-- end of sidenav -->
+            if (setSelected == "default") {
+                setSelected = [aadId];
+            }
 
-    <div class="main-content">
-        <!-- start of mobile-nav -->
-        <header class="mobile-nav pt-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-6">
-                        <a href="index.html">
-                            <img src="images/logo.png" alt="">
-                        </a>
+            microsoftTeams.people.selectPeople({ setSelected: setSelected, openOrgWideSearchInChatOrChannel: openOrgWideSearchInChatOrChannel, singleSelect: singleSelect }).then((people) => {
+                if (people) {
+                    let peopleData = JSON.stringify(people);
+
+                    if (id == "default") {
+                        $("#defaultSelected").empty();
+                        $("#defaultSelected").append("Selected member: " + peopleData)
+                        $("#defaultSelected").show();
+                    }
+
+                    if (id == "singleSelect") {
+                        $("#singleSelected").empty();
+                        $("#singleSelected").append("Selected member: " + peopleData)
+                        $("#singleSelected").show();
+                    }
+
+                    if (id == "allMemberOfOrganisation") {
+                        $("#allMemberOfOrganisationSelected").empty();
+                        $("#allMemberOfOrganisationSelected").append("Selected member: " + peopleData)
+                        $("#allMemberOfOrganisationSelected").show();
+                    }
+
+                    if (id == "defaultSelect") {
+                        $("#defaultMemberSelected").empty();
+                        $("#defaultMemberSelected").append("Selected member: " + peopleData)
+                        $("#defaultMemberSelected").show();
+                    }
+                }
+            });
+        }
+    </script>
+    <style>
+        #mainDiv {
+            padding-left: 6%;
+            padding-top: 2%;
+        }
+
+        #taskDetails {
+            margin-top: 1rem;
+        }
+
+        .label-text {
+            padding-top: 1.5rem;
+            margin-left: 1rem;
+        }
+
+        #error {
+            color: #dd1438;
+            margin-top: 1rem;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            width: 52rem;
+            min-height: 27rem;
+            overflow: hidden;
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            }
+
+        .card-container-div {
+            padding-bottom: 2rem;
+            display: flex;
+        }
+
+        .signin-header,
+        .configure-header {
+            margin-left: 1rem;
+            margin-right: 1rem;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+        }
+
+        button {
+            margin: 1rem 8.5rem 0rem 19.5rem;
+        }
+
+        #defaultSelected,
+        #allMemberOfOrganisationSelected,
+        #singleSelected,
+        #defaultMemberSelected,
+        .configure-header {
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body id=mainDiv>
+    <div class="container">
+        <div class="card-container-div">
+   
+            <div>
+                <div class="card">
+                    <p class="btn-primary">
+                         Hello <span id="userId"></span>
+                     </p>
+
+                    <div class="signin-header"><b>Register you NFT Wallet.</b></div>
+                    <div>
+                        @Html.TextBox("name")
+                        <a href="post-details.html" class="btn btn-primary">Register </a>
                     </div>
-                    <div class="col-6 text-right">
-                        <button class="nav-toggle bg-transparent border text-white">
-                            <span class="fas fa-bars"></span>
-                        </button>
-                    </div>
+
                 </div>
-            </div>
-        </header>
-        <div class="nav-toggle-overlay"></div>
-        <!-- end of mobile-nav -->
-
-
-
-        <div class="container pt-4 mt-5">
-            <div class="row justify-content-between">
-                <div class="col-lg-7">
-                    <h1 class="widget-title text-white d-inline-block mt-4">About App</h1>
-                    <div class="blockquote bg-dark my-5">
-                        <p class="blockquote-text pl-2">@ViewBag.AboutApp</p>
-                        <span class="blockquote-footer text-white h4 mt-3">Developer</span>
-                    </div>
-                    <!--end of quote block-->
-
-                    <div class="card post-item bg-transparent border-0 mb-5">
-
-                        <div class="card-body px-0">
-                            <h2 class="card-title text-white"> 
-                                Generate new NFT Badge
-                            </h2>
-
-                            <p class="card-text my-4">
-                                Generate new NFT badge goes here.
-                            </p>
-                            <a href="post-details.html" class="btn btn-primary">Read More <img src="images/arrow-right.png" alt=""></a>
-                        </div>
-                    </div>
-                    <!-- end of post-item -->
-                    <div class="card post-item bg-transparent border-0 mb-5">
-
-                        <div class="card-body px-0">
-                            <h2 class="card-title text-white">
-                                Send your Gratitude
-                            </h2>
-
-                            <p class="card-text my-4">
-                                Transfer the NFT goes here.
-                            </p>
-                            <a href="post-details.html" class="btn btn-primary">Read More <img src="images/arrow-right.png" alt=""></a>
-                        </div>
-                    </div>
-                    <!-- end of post-item -->
-
-                </div>
-
-                <!-- start of side widget -->
-                <div class="col-lg-4 col-md-5">
-                    <div class="widget text-center">
-                        
-                        <h2 class="widget-title text-white d-inline-block mt-4">About Me</h2>
-                        <p class="mt-4">Lorem ipsum dolor sit coectetur adiing elit. Tincidunfywjt leo mi, viearra urna. Arcu ve isus, condimentum ut vulpate cursus por turpis.</p>
-                        <ul class="list-inline mt-3">
-                            <li class="list-inline-item">
-                                <a href="#!" class="text-white text-primary-onHover p-2">
-                                    <span class="fab fa-twitter"></span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!" class="text-white text-primary-onHover p-2">
-                                    <span class="fab fa-facebook-f"></span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!" class="text-white text-primary-onHover p-2">
-                                    <span class="fab fa-instagram"></span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!" class="text-white text-primary-onHover p-2">
-                                    <span class="fab fa-linkedin-in"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- end of author-widget -->
-                </div>
-                <!-- end of side widget -->
             </div>
         </div>
-
-        <!-- start of footer -->
-        <footer class="bg-dark">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-3 col-sm-6 mb-5">
-                        <h5 class="font-primary text-white mb-4">Inspirations</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#!">Privacy State</a></li>
-                            <li><a href="#!">Privacy</a></li>
-                            <li><a href="#!">State</a></li>
-                            <li><a href="#!">Privacy</a></li>
-                        </ul>
-                    </div>
-                   
+        <div class="card-container-div">
+                <div class="card">
+                    <div class="signin-header"><b>People picker with all members of the tenant</b></div>
+                <Button data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,false)" class="btn btn-primary">
+                        Select People
+                    </Button>
+                    <div id="allMemberOfOrganisationSelected" class="label-text"></div>
                 </div>
-            </div>
-        </footer>
-        <!-- end of footer -->
-    </div>
-
-</section>
-<!-- END main-wrapper -->
-<!-- All JS Files -->
-<script src="plugins/jQuery/jquery.min.js"></script>
-<script src="plugins/bootstrap/bootstrap.min.js"></script>
-
-<!-- Main Script -->
-<script src="js/script.js"></script>
+            
+        </div>
+     </div>
+</body>

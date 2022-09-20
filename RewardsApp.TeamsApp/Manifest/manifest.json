@@ -5,10 +5,10 @@
   "id": "00000000-0000-0000-0000-000000000000",
   "packageName": "RewardsApp.TeamsApp",
   "developer": {
-    "name": "dubeypiyush@microsoft.com",
-    "websiteUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io/",
-    "privacyUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io/",
-    "termsOfUseUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io/"
+    "name": "Microsoft",
+    "websiteUrl": "https://www.teams.com",
+    "privacyUrl": "https://www.teams.com/privacy",
+    "termsOfUseUrl": "https://www.teams.com/termsofuse"
   },
   "name": {
     "short": "Rewards",
@@ -23,16 +23,32 @@
     "color": "color.png"
   },
   "accentColor": "#60A18E",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://e247-2404-f801-8028-1-7c32-3c83-cc2e-a451.in.ngrok.io",
+      "canUpdateConfiguration": true,
+      "scopes": [
+        "team",
+        "groupchat"
+      ]
+    }
+  ],
   "staticTabs": [
     {
       "entityId": "RewardsApp.TeamsApp.Reward",
-      "name": "Reward",
-      "contentUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io",
+      "name": "Tab",
+      "contentUrl": "https://e247-2404-f801-8028-1-7c32-3c83-cc2e-a451.in.ngrok.io",
+      "websiteUrl": "https://e247-2404-f801-8028-1-7c32-3c83-cc2e-a451.in.ngrok.io",
       "scopes": [
         "personal"
       ]
     }
   ],
-  "permissions": [],
-  "validDomains": []
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "*.ngrok.io"
+  ]
 }
