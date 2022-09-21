@@ -6,9 +6,9 @@
   "packageName": "RewardsApp.TeamsApp",
   "developer": {
     "name": "dubeypiyush@microsoft.com",
-    "websiteUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io/",
-    "privacyUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io/",
-    "termsOfUseUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io/"
+    "websiteUrl": "https://52bb-2404-f801-8028-1-38b8-aac1-7027-5eb9.in.ngrok.io",
+    "privacyUrl": "https://52bb-2404-f801-8028-1-38b8-aac1-7027-5eb9.in.ngrok.io",
+    "termsOfUseUrl": "https://52bb-2404-f801-8028-1-38b8-aac1-7027-5eb9.in.ngrok.io"
   },
   "name": {
     "short": "Rewards",
@@ -27,7 +27,7 @@
     {
       "entityId": "RewardsApp.TeamsApp.Reward",
       "name": "Reward",
-      "contentUrl": "https://7fc6-2405-201-d025-30b6-210c-19fb-9ace-a0f6.in.ngrok.io",
+      "contentUrl": "https://52bb-2404-f801-8028-1-38b8-aac1-7027-5eb9.in.ngrok.io",
       "scopes": [
         "personal"
       ]
