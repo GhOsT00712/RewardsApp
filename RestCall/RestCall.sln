@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestCall", "RestCall\RestCall.csproj", "{422278E5-46BB-47C6-BA76-B5AE0281B5A5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestClient", "RestClient\RestClient.csproj", "{BD850B4B-4F87-4F22-AEE7-CA0DCE00732B}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{422278E5-46BB-47C6-BA76-B5AE0281B5A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{422278E5-46BB-47C6-BA76-B5AE0281B5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{422278E5-46BB-47C6-BA76-B5AE0281B5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{422278E5-46BB-47C6-BA76-B5AE0281B5A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD850B4B-4F87-4F22-AEE7-CA0DCE00732B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD850B4B-4F87-4F22-AEE7-CA0DCE00732B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD850B4B-4F87-4F22-AEE7-CA0DCE00732B}.Release|Any CPU.ActiveCfg = Release|Any CPU

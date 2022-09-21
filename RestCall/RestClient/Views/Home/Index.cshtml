@@ -1,8 +1,62 @@
-﻿@{
+﻿@*@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+*@
+@model RestClient.Models.userData;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>User Data</h1>
+
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <table class="table table-responsive" style="width:fit-content">
+
+            <tr>
+                <th>
+                    Total NFTs:- @Html.DisplayFor(item => item.totalCount)
+                </th>
+            </tr>
+
+            <tr>
+                <th>
+                    NFT Image
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    TokenId
+                </th>
+            </tr>
+
+            @foreach (var item in Model.ownedNfts)
+            {
+                <tr>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.rawMetadata.image)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.rawMetadata.description)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.rawMetadata.name)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.tokenId)
+                        </td>
+                </tr>
+            }
+        </table>
+    </div>
 </div>

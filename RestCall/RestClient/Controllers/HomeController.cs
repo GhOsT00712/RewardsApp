@@ -9,6 +9,9 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Nancy.Json;
+using Newtonsoft.Json.Linq;
+using System.Text;
 
 namespace RestClient.Controllers
 {
@@ -40,10 +43,15 @@ namespace RestClient.Controllers
 
 
         //Hosted web API REST Service base url
-        string Baseurl = "http://192.168.95.1:5555/";
+        string Baseurl = "http://nftdapp.azurewebsites.net/";
+        //string Baseurl = "https://ghost00712-nftreward-7595w46qfwwp7-5000.githubpreview.dev/";
+        //string token = "0xed337f23dCb11b7b1e2939d14671A9E6487C8AdD";
         public async Task<ActionResult> Index()
         {
-            List<userData> EmpInfo = new List<userData>();
+            // List<userData> UserInfo = new List<userData>();
+            userData UserInfo = new userData();
+            //List<OwnedNft> UserInfo = new List<OwnedNft>() ;
+
             using (var client = new HttpClient())
             {
                 //Passing service base url
@@ -52,17 +60,25 @@ namespace RestClient.Controllers
                 //Define request data format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient
-                HttpResponseMessage Res = await client.GetAsync("api/Employee/GetAllEmployees");
+                HttpResponseMessage Res = await client.GetAsync("get/0xf32857eA7c345B2b245c6e9864Af1e7716Df7b1e");
                 //Checking the response is successful or not which is sent using HttpClient
                 if (Res.IsSuccessStatusCode)
                 {
+                    // Console.WriteLine("res content {0}", Res.Content);
                     //Storing the response details recieved from web api
-                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    var userResponse = Res.Content.ReadAsStringAsync().Result;
+                    Console.WriteLine("user response {0}", userResponse);
+                  
                     //Deserializing the response recieved from web api and storing into the Employee list
-                    EmpInfo = JsonConvert.DeserializeObject<List<userData>>(EmpResponse);
+                   UserInfo = JsonConvert.DeserializeObject<userData>(userResponse);
+                }
+                else
+                {
+                    Console.WriteLine("{0} ({1})", (int)Res.StatusCode,
+                                  Res.ReasonPhrase);
                 }
                 //returning the employee list to view
-                return View(EmpInfo);
+                return View(UserInfo);
             }
         }
     }
