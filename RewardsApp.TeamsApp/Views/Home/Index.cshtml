@@ -1,4 +1,5 @@
-﻿<head>
+﻿
+<head>
     <script src="https://res.cdn.office.net/teams-js/2.0.0/js/MicrosoftTeams.min.js"
             integrity="sha384-QtTBFeFlfRDZBfwHJHYQp7MdLJ2C3sfAEB1Qpy+YblvjavBye+q87TELpTnvlXw4"
             crossorigin="anonymous">
@@ -14,26 +15,47 @@
 
         let aadId;
         microsoftTeams.app.initialize();
-        var userId = "vishnu";
+        var userId = "vishnugupta@Microsoft.com";
+        var myWallet = "";
+
         microsoftTeams.app.getContext().then(function (context) {
             userId = context.user.userPrincipalName
             document.getElementById("userId").innerHTML = userId;
             document.getElementById("emailId").innerHTML = userId;
-
             aadId = context.user.id
+
         })
-        
 
+        let fetchRes = fetch("https://localhost:56669/MyWallet");
+        fetchRes.then(res =>
+            res.json()).then(d => {
+                myWallet = d.walletId;
+                console.log(d.walletId)
+            })
 
-        window.onload = function() {
-
+        var selectedData = "";
+        window.onload = function() {                 
             document.getElementById('theForm').onsubmit = function() {
             var txt = document.getElementById('emailId');
             txt.value = userId;
-        }}
+            }
 
+            document.getElementById('transferForm').onsubmit = function () {
+                var selectedData = $("#allMemberOfOrganisationSelected");
+                console.log(selectedData);
+                var txt = document.getElementById('emailId');
+                txt.value = userId;
+            }
+        }
+
+
+       var peoplePickerResponse;
+
+       function Openform(){
+            document.getElementById('transferForm').style.display = 'block';
+        }
        
-
+        
 
         // People picker api call.
         function selectPeople(e, setSelected, openOrgWideSearchInChatOrChannel, singleSelect) {
@@ -49,25 +71,25 @@
 
                     if (id == "default") {
                         $("#defaultSelected").empty();
-                        $("#defaultSelected").append("Selected member: " + peopleData)
+                        $("#defaultSelected").append(peopleData)
                         $("#defaultSelected").show();
                     }
 
                     if (id == "singleSelect") {
                         $("#singleSelected").empty();
-                        $("#singleSelected").append("Selected member: " + peopleData)
+                        $("#singleSelected").append(peopleData)
                         $("#singleSelected").show();
                     }
 
                     if (id == "allMemberOfOrganisation") {
                         $("#allMemberOfOrganisationSelected").empty();
-                        $("#allMemberOfOrganisationSelected").append("Selected member: " + peopleData)
+                        $("#allMemberOfOrganisationSelected").append(peopleData)
                         $("#allMemberOfOrganisationSelected").show();
                     }
 
                     if (id == "defaultSelect") {
                         $("#defaultMemberSelected").empty();
-                        $("#defaultMemberSelected").append("Selected member: " + peopleData)
+                        $("#defaultMemberSelected").append(peopleData)
                         $("#defaultMemberSelected").show();
                     }
                 }
@@ -154,6 +176,10 @@
                             <form action="/" method="post" id='theForm'>
                                 <input type="text" id="walletId" name="walletId" value="">
                                 <input type="hidden" id="emailId" name="emailId" />
+                                <p><Strong>User id :@ViewData["MyWallet"]</Strong></p>
+
+
+
                                 <input type="submit" name="submit" class="btn btn-primary" />
                             </form>
 
@@ -163,6 +189,8 @@
                         <p><Strong>Wallet id :@ViewBag.walletId</Strong></p>
                         <p><Strong>User id :@ViewBag.userId</Strong></p>
 
+
+
                     }
 
                 </div>
@@ -171,12 +199,60 @@
         <div class="card-container-div">
                 <div class="card">
                     <div class="signin-header"><b>People picker with all members of the tenant</b></div>
-                <Button data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,false)" class="btn btn-primary">
+                <Button data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,true); Openform();" class="btn btn-primary">
                         Select People
                     </Button>
-                    <div id="allMemberOfOrganisationSelected" class="label-text"></div>
+
+
+                <form action="/transfer" method="post" id='transferForm' style="display:none">
+                    <input type="hidden" id="emailId" name="emailId" />
+                    <input id="allMemberOfOrganisationSelected" name="allMemberOfOrganisationSelected">
+                    <label for="rewardType">Choose a Reward Type:</label>
+                    <select id="rewardType" name="rewardType">
+                        <option value="innovator">Innovator</option>
+                        <option value="topContributor">Top Contributor</option>
+                        <option value="leadership">Leadership</option>
+                    </select>
+                    <input type="submit" name="transfer" class="btn btn-primary" />
+                </form>
+
                 </div>
             
+        </div>
+        <div class="card-container-div">
+            <div class="card">
+                <div class="signin-header"><b>Show My NFT Token</b></div>
+
+                <form action="/showNFT" method="post" id='nftForm'>
+                    <input type="hidden" id="walletId" name="walletId">
+                    <input type="hidden" id="emailId" name="emailId" />
+                    <input type="submit" name="Show" class="btn btn-primary" />
+                </form>
+
+                
+                @if (ViewBag.nftMetaData != null) { 
+                    <div><b>Table Format Data Displaying in ForEach</b><br /></div>
+                    <table class="table table-bordered table-responsive table-hover">
+                        <tr>
+                            <th>Name </th>
+                            <th>Description </th>
+                            <th>Image </th>
+
+                        </tr>
+                        @foreach (var d in ViewBag.nftMetaData)
+                        {
+                            <tr>
+                                <td>@d["name"]</td>
+                                <td>@d["description"]</td>
+                                <td>@d["image"]</td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+
+            </div>
+
         </div>
      </div>
 </body>
