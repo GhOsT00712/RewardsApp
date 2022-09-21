@@ -5,6 +5,7 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+
         $(document).ready(function () {
             $("#defaultSelected").hide();
             $("#allMemberOfOrganisationSelected").hide();
@@ -13,11 +14,26 @@
 
         let aadId;
         microsoftTeams.app.initialize();
+        var userId = "vishnu";
         microsoftTeams.app.getContext().then(function (context) {
-            var userId = context.user.userPrincipalName
-            document.getElementById("userId").innerHTML = JSON.stringify(userId);
+            userId = context.user.userPrincipalName
+            document.getElementById("userId").innerHTML = userId;
+            document.getElementById("emailId").innerHTML = userId;
+
             aadId = context.user.id
         })
+        
+
+
+        window.onload = function() {
+
+            document.getElementById('theForm').onsubmit = function() {
+            var txt = document.getElementById('emailId');
+            txt.value = userId;
+        }}
+
+       
+
 
         // People picker api call.
         function selectPeople(e, setSelected, openOrgWideSearchInChatOrChannel, singleSelect) {
@@ -118,7 +134,8 @@
     </style>
 </head>
 
-<body id=mainDiv>
+<body>
+
     <div class="container">
         <div class="card-container-div">
    
@@ -128,11 +145,25 @@
                          Hello <span id="userId"></span>
                      </p>
 
-                    <div class="signin-header"><b>Register you NFT Wallet.</b></div>
-                    <div>
-                        @Html.TextBox("name")
-                        <a href="post-details.html" class="btn btn-primary">Register </a>
-                    </div>
+                     
+                    @if (ViewBag.walletId == null)
+                    {
+                        <div class="signin-header"><b>Register you NFT Wallet.</b></div>
+                        <div>
+
+                            <form action="/" method="post" id='theForm'>
+                                <input type="text" id="walletId" name="walletId" value="">
+                                <input type="hidden" id="emailId" name="emailId" />
+                                <input type="submit" name="submit" class="btn btn-primary" />
+                            </form>
+
+                        </div>
+                    }else{
+                        <p><Strong>Your wallet is registered :- </Strong></p>
+                        <p><Strong>Wallet id :@ViewBag.walletId</Strong></p>
+                        <p><Strong>User id :@ViewBag.userId</Strong></p>
+
+                    }
 
                 </div>
             </div>
