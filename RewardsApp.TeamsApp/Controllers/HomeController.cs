@@ -59,11 +59,11 @@ namespace RewardsApp.TeamsApp.Controllers
                 ViewData["userId"] = emailIdNft;
                 HashSet<Dictionary<String, String>> nftMetaData = await this.GetNFTData(savedWalletId);
                 ViewData["nftMetaData"] = nftMetaData;
-                return View("Index");
+                return View("Nft");
             }
             catch
             {
-                return View("Index");
+                return View("Nft");
             }
 
         }
@@ -93,14 +93,17 @@ namespace RewardsApp.TeamsApp.Controllers
                 {
                     transferError = "Selected user " + selectedEmailId + " doesn't have linked wallet.";
                 }
-                else {
+                else
+                {
 
                     mintToken = await this.GetMintToken(rewardType);
                     string response = await this.TrafnsferMintToken(mintToken, selecteduserWallet);
-                    if (response == null) {
+                    if (response == null)
+                    {
                         transferError = "Unable to transfer NFT. Please check your wallet Id.";
                     }
-                    else {
+                    else
+                    {
                         transferSuccess = "Transfered NFT to selected user.";
                     }
                 }
@@ -164,7 +167,7 @@ namespace RewardsApp.TeamsApp.Controllers
         public async Task<HashSet<Dictionary<String, String>>> GetNFTData(String walletId)
         {
             walletId = "0x6c62693e39629A2D3B4f7Fc4e34C8758ae261B3C"; //remove hard coded data
-            string uri = "get/"+walletId;
+            string uri = "get/" + walletId;
             NFTData nftData = new NFTData();
             string baseurl = "http://nftdapp.azurewebsites.net/";
 
@@ -190,9 +193,10 @@ namespace RewardsApp.TeamsApp.Controllers
                 foreach (OwnedNft ownedNft in ownedNfts)
                 {
                     Dictionary<String, String> metaData = new Dictionary<String, String>();
-                    metaData.Add("image", ownedNft.rawMetadata?.image);
-                    foreach(var attibute in ownedNft.rawMetadata.attributes)
-                    metaData.Add(attibute.trait_type, attibute.value);
+                    metaData.Add("tokenID", ownedNft.tokenId);
+                    metaData.Add("image", ownedNft.media[0].gateway);
+                    foreach (var attibute in ownedNft.rawMetadata.attributes)
+                        metaData.Add(attibute.trait_type, attibute.value);
                     result.Add(metaData);
                 }
                 return result;

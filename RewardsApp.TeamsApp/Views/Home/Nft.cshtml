@@ -1,0 +1,87 @@
+﻿<head runat="server">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="css/nftStyle.css" />
+</head>
+
+<!-- END preloader-wrapper -->
+<!-- START main-wrapper -->
+<section class="d-flex">
+
+    <!-- start of sidenav -->
+    <aside>
+        <div class="sidenav position-sticky d-flex flex-column justify-content-between">
+            <a class="navbar-brand logo" href="index.html">
+                <img src="images/logo.png" alt="" style="width: 14em;max-width: 500px;">
+            </a>
+            <!-- end of navbar-brand -->
+
+            <div class="navbar navbar-dark my-4 p-0 font-primary">
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white px-0 pt-0" href="#">Home</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white px-0" href="#">About</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- end of navbar -->
+
+            <ul class="list-inline nml-2">
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover pr-2">
+                        <span class="fab fa-twitter"></span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover p-2">
+                        <span class="fab fa-facebook-f"></span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover p-2">
+                        <span class="fab fa-instagram"></span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover p-2">
+                        <span class="fab fa-linkedin-in"></span>
+                    </a>
+                </li>
+            </ul>
+            <!-- end of social-links -->
+        </div>
+    </aside>
+    <!-- end of sidenav -->
+    <div>
+        <ul class="cards">
+            @if (ViewBag.nftMetaData != null)
+            {
+                @foreach (Dictionary<string, string> d in ViewBag.nftMetaData)
+                {
+                    <li>
+                        <a href="" class="card">
+                            <img src=@d["image"] class="card__image" alt="" />
+                            <div class="card__overlay">
+                                <div class="card__header">
+                                    @*<svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>*@
+                                    @*<img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />*@
+                                    <div class="card__header-text">
+                                        <h3 class="card__title">Name: @d["name"]</h3>
+                                        <span class="card__status">Token ID: @d["tokenID"]</span>
+                                    </div>
+                                </div>
+                                @if (d.ContainsKey("description"))
+                                {
+                                    <p class="card__description">Description: @d["description"]</p>
+                                }
+
+                            </div>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</section>
