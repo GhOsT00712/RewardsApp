@@ -119,7 +119,7 @@
                         <div class="card post-item bg-transparent border-0 mb-5">
                             <div class="card-body px-0">
                                 <h2 class="card-title text-white">
-                                    Your NFT wallet is already registered us
+                                    Your wallet is already registered
                                 </h2>
                             </div>
                             <div class="row">
@@ -168,87 +168,85 @@
 
                             <div class="card-body px-0">
                                 <h2 class="card-title text-white">
-                                    View your NFT Wallet.
+                                    Check your NFTs here
                                 </h2>
 
-                                <p class="card-text my-4">
-                                    Check your earned gratitude.
+                                <form action="/showNFT" method="post" id='nftForm'>
+                                    <input type="hidden" id="emailId" name="emailId" />
+                                    <input type="submit" name="submit" value="View your owned NFTs" class="btn btn-primary" />
+                                </form>
 
-                                    <div class="card-text my-4">
-                                        <form action="/showNFT" method="post" id='nftForm'>
-                                            <input type="hidden" id="emailId" name="emailId" />
-                                            <input type="submit" name="submit" value="View" class="btn btn-primary" />
-                                        </form>
+                                <section class="nft">
+                                    <!-- nft card starts-->
+                                    <div>
+                                        <ul class="nftcards">
+                                            @if (ViewBag.nftMetaData != null)
+                                            {
+                                                @foreach (Dictionary<string, string> d in ViewBag.nftMetaData)
+                                                {
 
-                                        <section class="nft">
-                                            <!-- nft card starts-->
-                                            <div>
-                                                <ul class="nftcards">
-                                                    @if (ViewBag.nftMetaData != null)
-                                                    {
-                                                        @foreach (var d in ViewBag.nftMetaData)
-                                                        {
-
-                                                            <li>
-                                                                <a href="" class="nftcard">
-                                                                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
-                                                                    <div class="card__overlay">
-                                                                        <div class="card__header">
-                                                                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-                                                                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
-                                                                            <div class="card__header-text">
-                                                                                <h3 class="card__title">@d["name"]</h3>
-                                                                                <span class="card__status">New</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="card__description">@d["description"]</p>
+                                                    <li>
+                                                        <a href="" class="nftcard">
+                                                            <div class="card__overlay bg-dark">
+                                                                <div class="card__header bg-purple">
+                                                                    <img class="card__thumb" src=@d["image"] alt="" />
+                                                                    <div class="card__header-text">
+                                                                        <h3 class="card__title">@d["name"]</h3>
+                                                                        <span class="card__status">NFT</span>
                                                                     </div>
-                                                                </a>
-                                                            </li>
-                                                        }
-                                                    }
-                                                </ul>
-                                            </div>             <!-- nft card end -->
-                                        </section>
+                                                                </div>
+                                                                @if (d.ContainsKey("description"))
+                                                                {
+                                                                    <p class="card__description bg-purple"> @d["description"]</p>
+                                                                }
 
-
-                                    </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>             <!-- nft card end -->
+                                </section>
 
 
                             </div>
+
+
                         </div>
-
-
-
-
                     </div>
-                    <!-- end of post-item -->
+
+
+
 
                 </div>
+                <!-- end of post-item -->
 
-                <!-- start of side widget -->
-                <!-- end of side widget -->
+            </div>
+
+            <!-- start of side widget -->
+            <!-- end of side widget -->
+        </div>
+    </div>
+
+    <!-- start of footer -->
+    <footer class="bg-dark">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-3 col-sm-6 mb-5">
+                    <h5 class="font-primary text-white mb-4">Inspirations</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#!">Privacy State</a></li>
+                        <li><a href="#!">Privacy</a></li>
+                        <li><a href="#!">State</a></li>
+                        <li><a href="#!">Privacy</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
-
-        <!-- start of footer -->
-        <footer class="bg-dark">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-3 col-sm-6 mb-5">
-                        <h5 class="font-primary text-white mb-4">Inspirations</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#!">Privacy State</a></li>
-                            <li><a href="#!">Privacy</a></li>
-                            <li><a href="#!">State</a></li>
-                            <li><a href="#!">Privacy</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
-        <!-- end of footer -->
+    </footer>
+    <!-- end of footer -->
     </div>
 
 </section>

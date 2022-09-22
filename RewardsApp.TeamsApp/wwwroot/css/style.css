@@ -295,6 +295,10 @@ body.loaded {
   background-color: #999999;
 }
 
+.bg-purple {
+    background-color: #231e35
+}
+
 .text-black-900 {
   color: #999999;
 }
@@ -769,19 +773,20 @@ footer ul li:last-child a {
 }
 
 .card__overlay {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 1;
-    border-radius: calc(var(--curve) * 1px);
-    background-color: white;
+    border-radius: 25px ;
     transform: translateY(100%);
     transition: .2s ease-in-out;
 }
 
 .nftcard:hover .card__overlay {
     transform: translateY(0);
+    /*border-bottom-left-radius:0px;*/
+    /*border-bottom-right-radius:0px;*/
 }
 
 .card__header {
@@ -790,8 +795,7 @@ footer ul li:last-child a {
     align-items: center;
     gap: 2em;
     padding: 2em;
-    border-radius: calc(var(--curve) * 1px) 0 0 0;
-    background-color: white;
+    border-radius: 25px;
     transform: translateY(-100%);
     transition: .2s ease-in-out;
 }
@@ -849,4 +853,5 @@ footer ul li:last-child a {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    border-radius:25px;
 }
