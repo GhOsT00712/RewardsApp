@@ -9,7 +9,7 @@ using RewardsApp.TeamsApp.Services.Storage;
 using RewardsApp.TeamsApp.Model;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace RewardsApp.TeamsApp.Controllers
 {
@@ -177,7 +177,7 @@ namespace RewardsApp.TeamsApp.Controllers
                 if (Res.IsSuccessStatusCode)
                 {
                     var userResponse = Res.Content.ReadAsStringAsync().Result;
-                    nftData = JsonConvert.DeserializeObject<NFTData>(userResponse);
+                    nftData = JsonSerializer.Deserialize<NFTData>(userResponse);
                 }
                 else
                 {
@@ -200,13 +200,14 @@ namespace RewardsApp.TeamsApp.Controllers
         }
 
 
-        [Route("MyWallet")]
-        public string MyWallet()
+        [Route("user/{userId}/wallet")]
+        public string MyWallet(string userId)
         {
             UserDataStore userDataStore = UserDataStoreFactory.Instance.GetUserDataStore();
-            string userId = "vishnugupta@microsoft.com"; // remove hard coded data
             var savedWalletId = userDataStore.GetUserWallet(userId);
-            return savedWalletId;
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            data["walletId"] = savedWalletId;
+            return JsonSerializer.Serialize(data);
         }
 
         [Route("first")]
