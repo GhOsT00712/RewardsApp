@@ -113,7 +113,8 @@ namespace RewardsApp.TeamsApp.Controllers
                 {
                     Dictionary<String, String> metaData = new Dictionary<String, String>();
                     metaData.Add("image", ownedNft.rawMetadata?.image);
-                    foreach(var attibute in ownedNft.rawMetadata.attributes)
+                    metaData.Add("tokenID", ownedNft.tokenId);
+                    foreach (var attibute in ownedNft.rawMetadata.attributes)
                     metaData.Add(attibute.trait_type, attibute.value);
                     result.Add(metaData);
                 }
