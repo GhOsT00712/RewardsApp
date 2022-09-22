@@ -146,43 +146,45 @@
 
                         <div class="card-body px-0">
                             <h2 class="card-title text-white">
-                                Send your Gratitude
+                                Send your Thanks
                             </h2>
 
-                            <p class="card-text my-4">
-                                Transfer the NFT goes here.
-
-                                <div class="signin-header"><b>People picker with all members of the tenant</b></div>
-                                
-                            </p>
-                            <a href="" data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,true); OpenTransferform()" class="btn btn-primary">Select People <img src="images/arrow-right.png" alt=""></a>
+                            <a href="" data-id="singleSelect" onclick="selectPeople(event,[],true,true); OpenTransferform()" class="btn btn-primary">Select People <img src="images/arrow-right.png" alt=""></a>
                             <!--user card-->
-                            <ul class="list-unstyled">
-                                <li class="mb-4">
-                                    <h3 id="allMemberOfOrganisationSelected" class="text-white mb-3 add-letter-space">Don't reimplement the wheel</h3>
-                                </li>
-                            </ul>
+                            <p class="card-text my-4">
+                            </p>
+                            <div class="categores-links text-capitalize">
+                                <a id="singleSelected" class="border" href="#!" style="">Name goes here..</a>
+                            </div>
+
+
+
                             <form action="/transfer" method="post" id='transferForm' style="display:none">
                                 <input type="hidden" id="emailIdTrans" name="emailIdTrans" />
                                 <input type="hidden" id="selectedEmailId" name="selectedEmailId" />
-                                <label class="signin-header"><b>Select reward type :- </b></label><br>
+                                <p class="card-text my-4">
+                                    Select type of NFT :
+                                </p>
 
-                                <select id="rewardType" name="rewardType">
-                                    <option value="innovator">Innovator</option>
-                                    <option value="top">Top Contributor</option>
-                                    <option value="help">Helping Others</option>
+                                <select id="rewardType" class="custom-select bg-transparent rounded-0 text-white shadow-none" name="rewardType">
+                                    <option value="innovator" style=" background-color: #1D1C21;">Innovator</option>
+                                    <option value="top" style=" background-color: #1D1C21;">Top Contributor</option>
+                                    <option value="help" style=" background-color: #1D1C21;">Helping Others</option>
                                 </select>
-                                <input type="submit" name="Transfer" class="btn btn-primary" />
+                                <p class="card-text my-4">
+                                </p>
+                                <input type="submit" onclick="ShowLoader()" id="Transfer" class="btn btn-primary" />
+                                <div id="spinner" class="spinner-border text-red" style="visibility:hidden"></div>
                             </form>
 
                             @if (ViewBag.transferSuccess != null)
                             {
-                                <div class="signin-header"><b>@ViewBag.transferSuccess</b></div>
+                                <h3 class="text-white mb-3 add-letter-space"><b>@ViewBag.transferSuccess</b></h3>
 
                             }
                             @if (ViewBag.transferError != null)
                             {
-                                <div class="signin-header"><b>@ViewBag.transferError</b></div>
+                                <h3 class="text-white mb-3 add-letter-space"><b>@ViewBag.transferError</b></h3>
 
                             }
 
@@ -201,69 +203,68 @@
                                 <p class="card-text my-4">
                                     Check your earned gratitude.
 
-                                <div class="card-text my-4">
+                                    <div class="card-text my-4">
                                         <form action="/showNFT" method="post" id='nftForm'>
                                             <input type="hidden" id="emailIdNft" name="emailIdNft" />
                                             <input type="submit" name="submit" value="View" class="btn btn-primary" />
                                         </form>
 
-                                <section class="nft">
-                                    <!-- nft card starts-->
-                                    <div>
-                                        <ul class="nftcards">
-                                            @if (ViewBag.nftMetaData != null)
-                                            {
-                                                @foreach (Dictionary<string, string> d in ViewBag.nftMetaData)
-                                                {
+                                        <section class="nft">
+                                            <!-- nft card starts-->
+                                            <div>
+                                                <ul class="nftcards">
+                                                    @if (ViewBag.nftMetaData != null)
+                                                    {
+                                                        @foreach (Dictionary<string, string> d in ViewBag.nftMetaData)
+                                                        {
 
-                                                    <li>
-                                                        <a class="nftcard">
-                                                            <div class="card__overlay bg-dark">
-                                                                <div class="card__header bg-purple">
-                                                                    <img class="card__thumb" src=@d["image"] alt="" />
-                                                                    <div class="card__header-text">
-                                                                        <h3 class="card__title">@d["name"]</h3>
-                                                                        <span class="card__status">NFT</span>
+                                                            <li>
+                                                                <a class="nftcard">
+                                                                    <div class="card__overlay bg-dark">
+                                                                        <div class="card__header bg-purple">
+                                                                            <img class="card__thumb" src=@d["image"] alt="" />
+                                                                            <div class="card__header-text">
+                                                                                <h3 class="card__title">@d["name"]</h3>
+                                                                                <span class="card__status">NFT</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        @if (d.ContainsKey("description"))
+                                                                        {
+                                                                            <p class="card__description bg-purple"> @d["description"]</p>
+                                                                        }
+
                                                                     </div>
-                                                                </div>
-                                                                @if (d.ContainsKey("description"))
-                                                                {
-                                                                    <p class="card__description bg-purple"> @d["description"]</p>
-                                                                }
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>             <!-- nft card end -->
+                                        </section>
 
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                }
-                                            }
-                                        </ul>
-                                    </div>             <!-- nft card end -->
-                                </section>
+
+                                    </div>
 
 
                             </div>
-
-
                         </div>
+
+
+
+
                     </div>
-
-
-
+                    <!-- end of post-item -->
 
                 </div>
-                <!-- end of post-item -->
 
+                <!-- start of side widget -->
+                <!-- end of side widget -->
             </div>
-
-            <!-- start of side widget -->
-            <!-- end of side widget -->
         </div>
-    </div>
 
-    <!-- start of footer -->
-   
-    <!-- end of footer -->
-  
+        <!-- start of footer -->
+        <!-- end of footer -->
+
 
 </section>
 
@@ -322,12 +323,12 @@
                 }
                 if (id == "singleSelect") {
                     $("#singleSelected").empty();
-                    $("#singleSelected").append("Selected member: " + peopleData)
+                    $("#singleSelected").append(people[0].displayName)
                     $("#singleSelected").show();
                 }
                 if (id == "allMemberOfOrganisation") {
                     $("#allMemberOfOrganisationSelected").empty();
-                    $("#allMemberOfOrganisationSelected").append("Selected member: " + people[0].displayName)
+                    $("#allMemberOfOrganisationSelected").append(people[0].displayName)
                     $("#allMemberOfOrganisationSelected").show();
                 }
                 if (id == "defaultSelect") {
@@ -341,6 +342,10 @@
 
     function OpenTransferform() {
         document.getElementById('transferForm').style.display = 'block';
+    }
+    function ShowLoader() {
+        document.getElementById('spinner').style.visibility = 'visible';
+        document.getElementById('Transfer').value = 'Please wait ..';
     }
 </script>
 
