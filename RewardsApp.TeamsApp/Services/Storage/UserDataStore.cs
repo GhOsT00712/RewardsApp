@@ -19,6 +19,11 @@ namespace RewardsApp.TeamsApp.Services.Storage
 
         public void SetUserData(string userId, string walletId)
         {
+            if (userId == null)
+            {
+                return;
+            }
+
             _tableClient.CreateIfNotExists();
             var entity = new UserData
             {
@@ -32,12 +37,21 @@ namespace RewardsApp.TeamsApp.Services.Storage
 
         public void DeleteUserData(string userId)
         {
+            if (userId == null)
+            {
+                return;
+            }
+
             _tableClient.CreateIfNotExists();
             _tableClient.DeleteEntity(partitionKey: this.partitionKey, rowKey: userId);
         }
 
         public string GetUserWallet(string userId)
         {
+            if (userId == null) { 
+                return null;
+            }
+
             _tableClient.CreateIfNotExists();
             try
             {
