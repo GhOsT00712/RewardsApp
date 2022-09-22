@@ -18,7 +18,6 @@ namespace RewardsApp.TeamsApp.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            ViewBag.AboutApp = "Reward your Teammated with NFTs.";
             return View();
         }
 
@@ -191,9 +190,9 @@ namespace RewardsApp.TeamsApp.Controllers
                 foreach (OwnedNft ownedNft in ownedNfts)
                 {
                     Dictionary<String, String> metaData = new Dictionary<String, String>();
-                    metaData.Add("name", ownedNft.rawMetadata?.name);
-                    metaData.Add("description", ownedNft.rawMetadata?.description);
                     metaData.Add("image", ownedNft.rawMetadata?.image);
+                    foreach(var attibute in ownedNft.rawMetadata.attributes)
+                    metaData.Add(attibute.trait_type, attibute.value);
                     result.Add(metaData);
                 }
                 return result;
