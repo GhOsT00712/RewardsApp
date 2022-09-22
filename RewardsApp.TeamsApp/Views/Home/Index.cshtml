@@ -12,7 +12,7 @@
         <!-- start of sidenav -->
         <aside>
             <div class="sidenav position-sticky d-flex flex-column justify-content-between">
-                <a class="navbar-brand" href="index.html" class="logo">
+            <a class="navbar-brand logo" href="index.html">
                     <img src="images/logo.png" alt="" style="width: 14em;max-width: 500px;">
                 </a>
                 <!-- end of navbar-brand -->
@@ -160,51 +160,12 @@
 
                                 <div class="card-text my-4">
                                         <form action="/showNFT" method="post" id='nftForm'>
-                                        <input type="hidden" id="emailId" name="emailId" />
+                                            <input type="hidden" id="emailId" name="emailId" />
                                             <input type="submit" name="submit" value="View" class="btn btn-primary" />
                                         </form>
-
-                                        <section class="nft">
-                                            <!-- nft card starts-->
-                                            <div>
-                                                <ul class="nftcards">
-                                        @if (ViewBag.nftMetaData != null)
-                                        {                                                 
-                                                        @foreach (var d in ViewBag.nftMetaData)
-                                                        {
-
-                                                            <li>
-                                                                <a href="" class="nftcard">
-                                                                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
-                                                                    <div class="card__overlay">
-                                                                        <div class="card__header">
-                                                                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-                                                                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
-                                                                            <div class="card__header-text">
-                                                                                <h3 class="card__title">@d["name"]</h3>
-                                                                                <span class="card__status">New</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="card__description">@d["description"]</p>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        }
-                                                    }
-                                                </ul>
-                                            </div>             <!-- nft card end -->
-                                        </section>
-
-
                                 </div>
-
-                                    
                             </div>
                         </div>
-
-
-                        
-
                     </div>
                     <!-- end of post-item -->
 

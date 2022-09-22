@@ -77,7 +77,7 @@ namespace RewardsApp.TeamsApp.Controllers
 
 
 
-                return View("Index");
+                return View("Nft");
             }
             catch
             {
@@ -116,6 +116,7 @@ namespace RewardsApp.TeamsApp.Controllers
                     metaData.Add("name", ownedNft.rawMetadata?.name);
                     metaData.Add("description", ownedNft.rawMetadata?.description);
                     metaData.Add("image", ownedNft.rawMetadata?.image);
+                    metaData.Add("tokenID", ownedNft.tokenId);
                     result.Add(metaData);
                 }
                 return result;
