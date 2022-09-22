@@ -785,8 +785,6 @@ footer ul li:last-child a {
 
 .nftcard:hover .card__overlay {
     transform: translateY(0);
-    /*border-bottom-left-radius:0px;*/
-    /*border-bottom-right-radius:0px;*/
 }
 
 .card__header {
@@ -816,6 +814,8 @@ footer ul li:last-child a {
 
 .nftcard:hover .card__header {
     transform: translateY(0);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .card__thumb {
@@ -853,5 +853,6 @@ footer ul li:last-child a {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-    border-radius:25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
