@@ -146,6 +146,65 @@
                             </p>
                             <a href="" data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,true)" class="btn btn-primary">Read More <img src="images/arrow-right.png" alt=""></a>
                         </div>
+
+                        <!-- end of post-item -->
+                        <div class="card post-item bg-transparent border-0 mb-5">
+
+                            <div class="card-body px-0">
+                                <h2 class="card-title text-white">
+                                    View your NFT Wallet.
+                                </h2>
+
+                                <p class="card-text my-4">
+                                    Check your earned gratitude.
+
+                                <div class="card-text my-4">
+                                        <form action="/showNFT" method="post" id='nftForm'>
+                                        <input type="hidden" id="emailId" name="emailId" />
+                                            <input type="submit" name="submit" value="View" class="btn btn-primary" />
+                                        </form>
+
+                                        <section class="nft">
+                                            <!-- nft card starts-->
+                                            <div>
+                                                <ul class="nftcards">
+                                        @if (ViewBag.nftMetaData != null)
+                                        {                                                 
+                                                        @foreach (var d in ViewBag.nftMetaData)
+                                                        {
+
+                                                            <li>
+                                                                <a href="" class="nftcard">
+                                                                    <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
+                                                                    <div class="card__overlay">
+                                                                        <div class="card__header">
+                                                                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                                                                            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                                                                            <div class="card__header-text">
+                                                                                <h3 class="card__title">@d["name"]</h3>
+                                                                                <span class="card__status">New</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <p class="card__description">@d["description"]</p>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>             <!-- nft card end -->
+                                        </section>
+
+
+                                </div>
+
+                                    
+                            </div>
+                        </div>
+
+
+                        
+
                     </div>
                     <!-- end of post-item -->
 
@@ -207,6 +266,7 @@
         </div>
 
 </section>
+
 <!-- END main-wrapper -->
 <!-- All JS Files -->
 <script src="plugins/jQuery/jquery.min.js"></script>
@@ -276,3 +336,4 @@
         });
     }
 </script>
+
