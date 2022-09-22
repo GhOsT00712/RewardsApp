@@ -1,5 +1,4 @@
-﻿
-<!-- START preloader-wrapper -->
+﻿<!-- START preloader-wrapper -->
 <div class="preloader-wrapper">
     <div class="preloader-inner">
         <div class="spinner-border text-red"></div>
@@ -17,120 +16,137 @@
                 </a>
                 <!-- end of navbar-brand -->
 
-                <div class="navbar navbar-dark my-4 p-0 font-primary">
-                    <ul class="navbar-nav w-100">
-                        <li class="nav-item active">
-                            <a class="nav-link text-white px-0 pt-0" href="">Home</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link text-white px-0" href="">About</a>
-                        </li>
-                    
-                    </ul>
-                </div>
-                <!-- end of navbar -->
+            <div class="navbar navbar-dark my-4 p-0 font-primary">
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white px-0 pt-0" href="">Home</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white px-0" href="">About</a>
+                    </li>
 
-                <ul class="list-inline nml-2">
-                    <li class="list-inline-item">
-                        <a href="#!" class="text-white text-red-onHover pr-2">
-                            <span class="fab fa-twitter"></span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!" class="text-white text-red-onHover p-2">
-                            <span class="fab fa-facebook-f"></span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!" class="text-white text-red-onHover p-2">
-                            <span class="fab fa-instagram"></span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!" class="text-white text-red-onHover p-2">
-                            <span class="fab fa-linkedin-in"></span>
-                        </a>
-                    </li>
                 </ul>
-                <!-- end of social-links -->
             </div>
-        </aside>
-        <!-- end of sidenav -->
+            <!-- end of navbar -->
 
-        <div class="main-content">
-            <!-- start of mobile-nav -->
-            <header class="mobile-nav pt-4">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-6">
-                            <a href="index.html">
-                                <img src="images/logo.png" alt="">
-                            </a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <button class="nav-toggle bg-transparent border text-white">
-                                <span class="fas fa-bars"></span>
-                            </button>
-                        </div>
+            <ul class="list-inline nml-2">
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover pr-2">
+                        <span class="fab fa-twitter"></span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover p-2">
+                        <span class="fab fa-facebook-f"></span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover p-2">
+                        <span class="fab fa-instagram"></span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="text-white text-red-onHover p-2">
+                        <span class="fab fa-linkedin-in"></span>
+                    </a>
+                </li>
+            </ul>
+            <!-- end of social-links -->
+        </div>
+    </aside>
+    <!-- end of sidenav -->
+
+    <div class="main-content">
+        <!-- start of mobile-nav -->
+        <header class="mobile-nav pt-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button class="nav-toggle bg-transparent border text-white">
+                            <span class="fas fa-bars"></span>
+                        </button>
                     </div>
                 </div>
-            </header>
-            <div class="nav-toggle-overlay"></div>
-            <!-- end of mobile-nav -->
+            </div>
+        </header>
+        <div class="nav-toggle-overlay"></div>
+        <!-- end of mobile-nav -->
 
 
 
-            <div class="container pt-4 mt-5">
-                <div class="row justify-content-between">
-                    <div class="col-lg-7">
-                        <h1 class="widget-title text-white d-inline-block mt-4">About App</h1>
-                        <div class="blockquote bg-dark my-5">
-                            <p class="blockquote-text pl-2">@ViewBag.AboutApp</p>
-                            <span class="blockquote-footer text-white h4 mt-3">Developer</span>
-                        </div>
-                        <!--end of quote block-->
+        <div class="container pt-4 mt-5">
+            <div class="row justify-content-between">
+                <div class="col-lg-7">
+                    <h1 class="widget-title text-white d-inline-block mt-4">About App</h1>
+                    <div class="blockquote bg-dark my-5">
+                        <p class="blockquote-text pl-2">Reward your Teammated with NFTs.</p>
+                        <span class="blockquote-footer text-white h4 mt-3">Developer</span>
+                    </div>
+                    <!--end of quote block-->
+                    @if (ViewBag.walletId == null)
+                    {
+                        <div class="card post-item bg-transparent border-0 mb-5">
+                            <div class="card-body px-0">
+                                <h2 class="card-title text-white">
+                                    Your NFT Wallet
+                                </h2>
 
-                        @if (ViewBag.walletId == null)
-                        {
-                            <div class="card post-item bg-transparent border-0 mb-5">
-
-                                <div class="card-body px-0">
-                                    <h2 class="card-title text-white"> 
-                                        Register you NFT Wallet.
-                                    </h2>
-
-                                    <div class="card-text my-4">
-                                        <form action="/" method="post" id='theForm'>
-                                            <input type="text" id="walletId" name="walletId" value="">
-                                            <input type="hidden" id="emailId" name="emailId" />
-                                            <input type="submit" name="submit" class="btn btn-primary" />
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-8">
+                                        <form class="search-form" action="/" method="post" id="theForm">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-transparent shadow-none rounded-0" placeholder="Wallet Id here">
+                                                <input type="hidden" id="emailId" name="emailId" />
+                                                <div class="input-group-append">
+                                                    <button class="btn" type="submit" name="submit">
+                                                        <span class="fas fa-wallet"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                        }
-                        else
-                        {
-                            <div class="card post-item bg-transparent border-0 mb-5">
-
-                                <div class="card-body px-0">
-                                    <h2 class="card-title text-white">
-                                        Your wallet is registered
-                                    </h2>
-
-                                    <p class="card-text my-4">
-                                        Wallet id :@ViewBag.walletId
-                                    </p>
-                                </div>
-                            </div>
-                        }
-                        <!-- end of post-item -->
+                        </div>
+                    }
+                    else
+                    {
                         <div class="card post-item bg-transparent border-0 mb-5">
-
                             <div class="card-body px-0">
                                 <h2 class="card-title text-white">
-                                    Send your Gratitude
+                                    Your wallet is already registered
                                 </h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <form class="search-form" action="/" method="post" id="theform">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-transparent shadow-none rounded-0" value="@ViewBag.walletId" placeholder="Wallet Id here">
+                                            <input type="hidden" id="emailId" name="emailId" />
+                                            <div class="input-group-append">
+                                                <button class="btn" type="submit" name="submit">
+                                                    <span class="fas fa-wallet"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    <!-- end of post-item -->
+                    <div class="card post-item bg-transparent border-0 mb-5">
+
+                        <div class="card-body px-0">
+                            <h2 class="card-title text-white">
+                                Send your Gratitude
+                            </h2>
 
                             <p class="card-text my-4">
                                 Transfer the NFT goes here.
@@ -142,7 +158,7 @@
                                         <h3 id="allMemberOfOrganisationSelected" class="text-white mb-3 add-letter-space">Don't reimplement the wheel</h3>
                                     </li>
                                 </ul>
-                                
+
                             </p>
                             <a href="" data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,true)" class="btn btn-primary">Read More <img src="images/arrow-right.png" alt=""></a>
                         </div>
@@ -152,7 +168,7 @@
 
                             <div class="card-body px-0">
                                 <h2 class="card-title text-white">
-                                    View your NFT Wallet.
+                                    Check your NFTs here
                                 </h2>
 
                                 <p class="card-text my-4">
@@ -160,71 +176,51 @@
 
                                 <div class="card-text my-4">
                                         <form action="/showNFT" method="post" id='nftForm'>
-                                            <input type="hidden" id="emailId" name="emailId" />
+                                        <input type="hidden" id="emailId" name="emailId" />
                                             <input type="submit" name="submit" value="View" class="btn btn-primary" />
                                         </form>
+
+                                        
                                 </div>
+
+                                    
                             </div>
                         </div>
+
+
+                        
+
+                    </div>
+                    <!-- end of post-item -->
                     </div>
                     <!-- end of post-item -->
 
-                    </div>
-
-                    <!-- start of side widget -->
-                    <div class="col-lg-4 col-md-5">
-                        <div class="widget text-center">
-                        
-                            <h2 class="widget-title text-white d-inline-block mt-4">About Me</h2>
-                            <p class="mt-4">Lorem ipsum dolor sit coectetur adiing elit. Tincidunfywjt leo mi, viearra urna. Arcu ve isus, condimentum ut vulpate cursus por turpis.</p>
-                            <ul class="list-inline mt-3">
-                                <li class="list-inline-item">
-                                    <a href="#!" class="text-white text-primary-onHover p-2">
-                                        <span class="fab fa-twitter"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!" class="text-white text-primary-onHover p-2">
-                                        <span class="fab fa-facebook-f"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!" class="text-white text-primary-onHover p-2">
-                                        <span class="fab fa-instagram"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!" class="text-white text-primary-onHover p-2">
-                                        <span class="fab fa-linkedin-in"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- end of author-widget -->
-                    </div>
-                    <!-- end of side widget -->
-                </div>
             </div>
 
-            <!-- start of footer -->
-            <footer class="bg-dark">
-                <div class="container">
-                    <div class="row text-center">
-                        <div class="col-lg-3 col-sm-6 mb-5">
-                            <h5 class="font-primary text-white mb-4">Inspirations</h5>
-                            <ul class="list-unstyled">
-                                <li><a href="#!">Privacy State</a></li>
-                                <li><a href="#!">Privacy</a></li>
-                                <li><a href="#!">State</a></li>
-                                <li><a href="#!">Privacy</a></li>
-                            </ul>
-                        </div>
-                   
-                    </div>
-                </div>
-            </footer>
-            <!-- end of footer -->
+            <!-- start of side widget -->
+            <!-- end of side widget -->
         </div>
+    </div>
+
+    <!-- start of footer -->
+    <footer class="bg-dark">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-3 col-sm-6 mb-5">
+                    <h5 class="font-primary text-white mb-4">Inspirations</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#!">Privacy State</a></li>
+                        <li><a href="#!">Privacy</a></li>
+                        <li><a href="#!">State</a></li>
+                        <li><a href="#!">Privacy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer -->
+    </div>
 
 </section>
 

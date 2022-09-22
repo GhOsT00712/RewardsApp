@@ -295,6 +295,10 @@ body.loaded {
   background-color: #999999;
 }
 
+.bg-purple {
+    background-color: #231e35
+}
+
 .text-black-900 {
   color: #999999;
 }
