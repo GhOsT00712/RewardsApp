@@ -112,7 +112,7 @@ namespace RewardsApp.TeamsApp.Controllers
                 foreach (OwnedNft ownedNft in ownedNfts)
                 {
                     Dictionary<String, String> metaData = new Dictionary<String, String>();
-                    metaData.Add("image", ownedNft.rawMetadata?.image);
+                    metaData.Add("image", ownedNft.media[0].gateway);
                     metaData.Add("tokenID", ownedNft.tokenId);
                     foreach (var attibute in ownedNft.rawMetadata.attributes)
                     metaData.Add(attibute.trait_type, attibute.value);
