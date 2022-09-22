@@ -89,30 +89,30 @@
                     </div>
                     <!--end of quote block-->
 
-                        <div class="card post-item bg-transparent border-0 mb-5">
-                            <div class="card-body px-0">
-                                <h2 class="card-title text-white" id="regheader">
-                                    Your NFT Wallet
-                                </h2>
+                    <div class="card post-item bg-transparent border-0 mb-5">
+                        <div class="card-body px-0">
+                            <h2 class="card-title text-white" id="regheader">
+                                Your NFT Wallet
+                            </h2>
 
-                                <div class="row">
-                                    <div class="col-lg-5 col-md-8">
-                                        <form class="search-form" action="/" method="post" id="theForm">
-                                            <div class="input-group">
-                                                <input type="text" id="walletId" name="walletId" class="form-control bg-transparent shadow-none rounded-0" placeholder="Wallet Id here" />
-                                                <input type="hidden" id="emailId" name="emailId" />
-                                                <div class="input-group-append">
-                                                    <button class="btn" type="submit" name="submit">
-                                                        <span class="fas fa-wallet"></span>
-                                                    </button>
-                                                </div>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <form class="search-form" action="/" method="post" id="theForm">
+                                        <div class="input-group">
+                                            <input type="text" id="walletId" name="walletId" class="form-control bg-transparent shadow-none rounded-0" placeholder="Wallet Id here" />
+                                            <input type="hidden" id="emailId" name="emailId" />
+                                            <div class="input-group-append">
+                                                <button class="btn" type="submit" name="submit">
+                                                    <span class="fas fa-wallet"></span>
+                                                </button>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
+
                     <!-- end of post-item -->
                     <div class="card post-item bg-transparent border-0 mb-5">
 
@@ -163,7 +163,9 @@
 
 
                         </div>
+                    </div>
 
+                    <div class="card post-item bg-transparent border-0 mb-5">
                         <!-- end of post-item -->
                         <div class="card post-item bg-transparent border-0 mb-5">
 
@@ -274,18 +276,18 @@
         document.getElementById("emailIdTrans").value = userId;
 
 
-        let response =  fetch(window.location.origin + "/user/" + userId + "/wallet");
-        
-         response.then(res =>
+        let response = fetch(window.location.origin + "/user/" + userId + "/wallet");
+
+        response.then(res =>
             res.json()).then(d => {
 
-                if(d.walletId != null){
+                if (d.walletId != null) {
 
                     document.getElementById("walletId").value = d.walletId;
                     document.getElementById("regheader").innerHTML = "Your wallet is already registered";
                     console.log(d.walletId);
                 }
-                
+
             })
     }
 
