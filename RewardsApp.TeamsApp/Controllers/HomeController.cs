@@ -191,6 +191,9 @@ namespace RewardsApp.TeamsApp.Controllers
                     return null;
                 }
 
+                if (nftData.totalCount == 0) {
+                    return null;
+                }
                 List<OwnedNft> ownedNfts = nftData.ownedNfts;
                 HashSet<Dictionary<String, String>> result = new HashSet<Dictionary<string, string>>();
                 foreach (OwnedNft ownedNft in ownedNfts)
