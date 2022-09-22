@@ -57,8 +57,13 @@ namespace RewardsApp.TeamsApp.Controllers
 
                 ViewData["walletId"] = savedWalletId;
                 ViewData["userId"] = emailIdNft;
+                ViewBag.NFTMetaDataError = "false";
                 HashSet<Dictionary<String, String>> nftMetaData = await this.GetNFTData(savedWalletId);
                 ViewData["nftMetaData"] = nftMetaData;
+                if(nftMetaData==null)
+                {
+                    ViewBag.NFTMetaDataError = "true";
+                }
                 return View("Index");
             }
             catch
@@ -183,6 +188,7 @@ namespace RewardsApp.TeamsApp.Controllers
                 {
                     Console.WriteLine("{0} ({1})", (int)Res.StatusCode,
                                   Res.ReasonPhrase);
+                    return null;
                 }
 
                 List<OwnedNft> ownedNfts = nftData.ownedNfts;
