@@ -88,11 +88,10 @@
                         <span class="blockquote-footer text-white h4 mt-3">Developer</span>
                     </div>
                     <!--end of quote block-->
-                    @if (ViewBag.walletId == null)
-                    {
+
                         <div class="card post-item bg-transparent border-0 mb-5">
                             <div class="card-body px-0">
-                                <h2 class="card-title text-white">
+                                <h2 class="card-title text-white" id="regheader">
                                     Your NFT Wallet
                                 </h2>
 
@@ -113,34 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                    }
-                    else
-                    {
-                        <div class="card post-item bg-transparent border-0 mb-5">
-                            <div class="card-body px-0">
-                                <h2 class="card-title text-white">
-                                    Your wallet is already registered
-                                </h2>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <form class="search-form" action="/" method="post" id="theform">
-                                        <div class="input-group">
-                                            <input type="text" id="walletId" name="walletId" class="form-control bg-transparent shadow-none rounded-0" value="@ViewBag.walletId" placeholder="Wallet Id here">
-                                            <input type="hidden" id="emailId" name="emailId" />
-                                            <div class="input-group-append">
-                                                <button class="btn" type="submit" name="submit">
-                                                    <span class="fas fa-wallet"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                    }
+                    
                     <!-- end of post-item -->
                     <div class="card post-item bg-transparent border-0 mb-5">
 
@@ -299,6 +271,21 @@
         document.getElementById("emailId").value = userId;
         document.getElementById("emailIdNft").value = userId;
         document.getElementById("emailIdTrans").value = userId;
+
+
+        let response =  fetch(window.location.origin + "/user/" + userId + "/wallet");
+        
+         response.then(res =>
+            res.json()).then(d => {
+
+                if(d.walletId != null){
+
+                    document.getElementById("walletId").value = d.walletId;
+                    document.getElementById("regheader").innerHTML = "Your wallet is already registered";
+                    console.log(d.walletId);
+                }
+                
+            })
     }
 
 
