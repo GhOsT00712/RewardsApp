@@ -136,15 +136,41 @@
                                 Transfer the NFT goes here.
 
                                 <div class="signin-header"><b>People picker with all members of the tenant</b></div>
-                                <!--user card-->
-                                <ul class="list-unstyled">
-                                    <li class="bullet-list-item mb-4">
-                                        <h3 id="allMemberOfOrganisationSelected" class="text-white mb-3 add-letter-space">Don't reimplement the wheel</h3>
-                                    </li>
-                                </ul>
                                 
                             </p>
-                            <a href="" data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,true)" class="btn btn-primary">Read More <img src="images/arrow-right.png" alt=""></a>
+                            <a href="" data-id="allMemberOfOrganisation" onclick="selectPeople(event,[],true,true); OpenTransferform()" class="btn btn-primary">Select People <img src="images/arrow-right.png" alt=""></a>
+                            <!--user card-->
+                            <ul class="list-unstyled">
+                                <li class="mb-4">
+                                    <h3 id="allMemberOfOrganisationSelected" class="text-white mb-3 add-letter-space">Don't reimplement the wheel</h3>
+                                </li>
+                            </ul>
+                            <form action="/transfer" method="post" id='transferForm' style="display:none">
+                                <input type="hidden" id="emailIdTrans" name="emailIdTrans" />
+                                <input type="hidden" id="selectedEmailId" name="selectedEmailId" />
+                                <label class="signin-header"><b>Select reward type :- </b></label><br>
+
+                                <select id="rewardType" name="rewardType">
+                                    <option value="innovator">Innovator</option>
+                                    <option value="top">Top Contributor</option>
+                                    <option value="help">Helping Others</option>
+                                </select>
+                                <input type="submit" name="Transfer" class="btn btn-primary" />
+                            </form>
+
+                            @if (ViewBag.transferSuccess != null)
+                            {
+                                <div class="signin-header"><b>@ViewBag.transferSuccess</b></div>
+
+                            }
+                            @if (ViewBag.transferError != null)
+                            {
+                                <div class="signin-header"><b>@ViewBag.transferError</b></div>
+
+                            }
+
+
+
                         </div>
 
                         <!-- end of post-item -->
@@ -160,7 +186,7 @@
 
                                 <div class="card-text my-4">
                                         <form action="/showNFT" method="post" id='nftForm'>
-                                        <input type="hidden" id="emailId" name="emailId" />
+                                            <input type="hidden" id="emailIdNft" name="emailIdNft" />
                                             <input type="submit" name="submit" value="View" class="btn btn-primary" />
                                         </form>
 
@@ -287,20 +313,25 @@
     });
     let aadId;
     microsoftTeams.app.initialize();
-    var userId = "vishnu";
+    var userId = "vishnugupta@microsoft.com";
     microsoftTeams.app.getContext().then(function (context) {
         userId = context.user.userPrincipalName
         document.getElementById("userId").innerHTML = userId;
-        document.getElementById("emailId").innerHTML = userId;
+        document.getElementById("emailId").value = userId;
         aadId = context.user.id
     })
 
     window.onload = function () {
+        document.getElementById("emailId").value = userId;
+        document.getElementById("emailIdNft").value = userId;
+        document.getElementById("emailIdTrans").value = userId;
+
         document.getElementById('theForm').onsubmit = function () {
             var txt = document.getElementById('emailId');
             txt.value = userId;
         }
     }
+
 
     // People picker api call.
     function selectPeople(e, setSelected, openOrgWideSearchInChatOrChannel, singleSelect) {
@@ -312,6 +343,9 @@
         microsoftTeams.people.selectPeople({ setSelected: setSelected, openOrgWideSearchInChatOrChannel: openOrgWideSearchInChatOrChannel, singleSelect: singleSelect }).then((people) => {
             if (people) {
                 let peopleData = JSON.stringify(people);
+
+                document.getElementById("selectedEmailId").value = people[0].email;
+
                 if (id == "default") {
                     $("#defaultSelected").empty();
                     $("#defaultSelected").append("Selected member: " + peopleData)
@@ -334,6 +368,10 @@
                 }
             }
         });
+    }
+
+    function OpenTransferform() {
+        document.getElementById('transferForm').style.display = 'block';
     }
 </script>
 
