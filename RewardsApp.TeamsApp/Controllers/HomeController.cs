@@ -141,7 +141,7 @@ namespace RewardsApp.TeamsApp.Controllers
 
         public async Task<String> TrafnsferMintToken(string mintToken, string walletId)
         {
-            walletId = "0x6c62693e39629A2D3B4f7Fc4e34C8758ae261B3C"; //remove hard coded data
+            //walletId = "0x6c62693e39629A2D3B4f7Fc4e34C8758ae261B3C"; //remove hard coded data
             string response = null;
             string baseurl = "https://nftdapp.azurewebsites.net/transfer/";
             string uri = mintToken + "/" + walletId;
@@ -163,7 +163,7 @@ namespace RewardsApp.TeamsApp.Controllers
 
         public async Task<HashSet<Dictionary<String, String>>> GetNFTData(String walletId)
         {
-            walletId = "0x6c62693e39629A2D3B4f7Fc4e34C8758ae261B3C"; //remove hard coded data
+            //walletId = "0x6c62693e39629A2D3B4f7Fc4e34C8758ae261B3C"; //remove hard coded data
             string uri = "get/"+walletId;
             NFTData nftData = new NFTData();
             string baseurl = "http://nftdapp.azurewebsites.net/";
