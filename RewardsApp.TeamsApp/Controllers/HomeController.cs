@@ -28,10 +28,15 @@ namespace RewardsApp.TeamsApp.Controllers
             try
             {
                 UserDataStore userDataStore = UserDataStoreFactory.Instance.GetUserDataStore();
-                if (!String.IsNullOrEmpty(walletId) && !String.IsNullOrEmpty(emailId))
+
+                if (walletId == null && emailId != null) {
+                    userDataStore.DeleteUserData(emailId);
+                }
+                else if (!String.IsNullOrEmpty(emailId))
                 {
                     userDataStore.SetUserData(emailId, walletId);
                 }
+
                 var savedWalletId = userDataStore.GetUserWallet(emailId);
 
 
